@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -25,7 +26,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -60,7 +63,6 @@ class MainActivity : ComponentActivity() {
                 }
             })
         }
-
     }
 }
 
@@ -124,6 +126,20 @@ fun BarkHomeContent(navController: NavController) {
 
 @Composable
 fun PuppyListItem(puppy: Puppy, onItemClick: (Puppy) -> Unit) {
+    val rainbowColorsBrush = remember {
+        Brush.sweepGradient(
+            listOf(
+                Color(0xFF9575CD),
+                Color(0xFFBA68C8),
+                Color(0xFFE57373),
+                Color(0xFFFFB74D),
+                Color(0xFFFFF176),
+                Color(0xFFAED581),
+                Color(0xFF4DD0E1),
+                Color(0xFF9575CD)
+            )
+        )
+    }
     Card(
         modifier = Modifier
             .padding(8.dp)
@@ -134,7 +150,7 @@ fun PuppyListItem(puppy: Puppy, onItemClick: (Puppy) -> Unit) {
         border = BorderStroke(1.dp, Color.DarkGray)
 
     ) {
-        Row() {
+        Row {
             Image(
                 painter = painterResource(puppy.imageId),
                 contentDescription = null,
@@ -143,6 +159,8 @@ fun PuppyListItem(puppy: Puppy, onItemClick: (Puppy) -> Unit) {
                     .padding(8.dp)
                     .size(84.dp)
                     .clip(RoundedCornerShape(16.dp))
+                    .border(BorderStroke(2.dp, rainbowColorsBrush), RoundedCornerShape(16.dp))
+                    .blur(radius = 4.dp)
             )
             Column(
                 modifier = Modifier
