@@ -44,10 +44,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             val navController = rememberNavController()
             NavHost(navController = navController, startDestination = "MainActivity", builder = {
-                composable("MainActivity",){
+                composable("MainActivity") {
                     BarkHomeContent(navController)
                 }
-                composable("ProfileActivity",){
+                composable("ProfileActivity") {
                     ProfileNavigation(navController)
                 }
             })
