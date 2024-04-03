@@ -31,9 +31,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.listincompose.data.DataProvider
 import com.example.listincompose.data.Puppy
 import com.example.listincompose.ui.theme.ListInComposeTheme
@@ -47,18 +49,18 @@ class MainActivity : ComponentActivity() {
                 composable("MainActivity") {
                     BarkHomeContent(navController)
                 }
-                composable("ProfileActivity/{puppy.title}") { navBackStack ->
-                    val puppyId = navBackStack.arguments?.getString("puppy.title")
-                    if (puppyId != null) {
-                        ProfileNavigation(navController, puppyId)
-                    }
+                composable(
+                    "ProfileActivity/{puppy.id}",
+                    arguments = listOf(navArgument("puppy.id") { type = NavType.IntType })
+                ) { navBackStack ->
+                    val puppyId = navBackStack.arguments?.getInt("puppy.id")!!
+                    ProfileNavigation(navController, puppyId)
                 }
             })
         }
 
     }
 }
-
 
 @Composable
 fun ListItem() {
@@ -111,7 +113,7 @@ fun BarkHomeContent(navController: NavController) {
                 PuppyListItem(puppy = puppy) {
                     // Handle item click here
                     Toast.makeText(context, "Clicked on ${puppy.title}", Toast.LENGTH_SHORT).show()
-                    navController.navigate("ProfileActivity/${puppy.title}")
+                    navController.navigate("ProfileActivity/${puppy.id}")
                 }
             }
         )
