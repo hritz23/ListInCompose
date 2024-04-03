@@ -31,12 +31,12 @@ class ProfileDetail : ComponentActivity() {
 }
 
 @Composable
-fun ProfileNavigation(navController: NavController) {
-    ProfileDetails()
+fun ProfileNavigation(navController: NavController, puppyId: String) {
+    ProfileDetails(puppyId)
 }
 
 @Composable
-fun ProfileDetails(modifier: Modifier = Modifier.fillMaxSize()) {
+fun ProfileDetails(puppyId: String, modifier: Modifier = Modifier.fillMaxSize()) {
     Column(modifier = modifier.verticalScroll(rememberScrollState())) {
         Image(
             painter = painterResource(R.drawable.p1),
@@ -45,7 +45,7 @@ fun ProfileDetails(modifier: Modifier = Modifier.fillMaxSize()) {
             modifier = modifier.weight(0.5f)
         )
         Text(
-            text = "Monty",
+            text = puppyId,
             modifier.padding(16.dp),
             style = MaterialTheme.typography.headlineSmall
         )
@@ -58,6 +58,6 @@ fun ProfileDetails(modifier: Modifier = Modifier.fillMaxSize()) {
 @Composable
 fun GreetingPreview2() {
     ListInComposeTheme {
-        ProfileDetails()
+        ProfileDetails(puppyId = "5")
     }
 }
