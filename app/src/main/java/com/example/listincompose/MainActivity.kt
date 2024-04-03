@@ -47,8 +47,11 @@ class MainActivity : ComponentActivity() {
                 composable("MainActivity") {
                     BarkHomeContent(navController)
                 }
-                composable("ProfileActivity") {
-                    ProfileNavigation(navController)
+                composable("ProfileActivity/{puppy.title}") { navBackStack ->
+                    val puppyId = navBackStack.arguments?.getString("puppy.title")
+                    if (puppyId != null) {
+                        ProfileNavigation(navController, puppyId)
+                    }
                 }
             })
         }
@@ -108,7 +111,7 @@ fun BarkHomeContent(navController: NavController) {
                 PuppyListItem(puppy = puppy) {
                     // Handle item click here
                     Toast.makeText(context, "Clicked on ${puppy.title}", Toast.LENGTH_SHORT).show()
-                    navController.navigate("ProfileActivity")
+                    navController.navigate("ProfileActivity/${puppy.title}")
                 }
             }
         )
