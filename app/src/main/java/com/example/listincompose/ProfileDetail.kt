@@ -72,7 +72,7 @@ fun ProfileDetails(puppyId: Int, modifier: Modifier = Modifier.fillMaxSize()) {
             ClickableText(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp),
+                    .padding(top = 16.dp, start = 16.dp),
                 style = MaterialTheme.typography.headlineSmall,
                 text = AnnotatedString("View All"),
                 onClick = { showDetails = !showDetails })
