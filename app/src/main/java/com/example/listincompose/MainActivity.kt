@@ -6,11 +6,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -49,19 +51,30 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val navController = rememberNavController()
-            NavHost(navController = navController, startDestination = "MainActivity", builder = {
-                composable("MainActivity") {
-                    BarkHomeContent(navController)
-                }
-                composable(
-                    "ProfileActivity/{puppy.id}",
-                    arguments = listOf(navArgument("puppy.id") { type = NavType.IntType })
-                ) { navBackStack ->
-                    val puppyId = navBackStack.arguments?.getInt("puppy.id")!!
-                    ProfileNavigation(navController, puppyId)
-                }
-            })
+            ListInComposeTheme {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(MaterialTheme.colorScheme.primary)
+                ) {}
+                val navController = rememberNavController()
+                NavHost(
+                    navController = navController,
+                    startDestination = "MainActivity",
+                    builder = {
+                        composable("MainActivity") {
+                            BarkHomeContent(navController)
+                        }
+                        composable(
+                            "ProfileActivity/{puppy.id}",
+                            arguments = listOf(navArgument("puppy.id") { type = NavType.IntType })
+                        ) { navBackStack ->
+                            val puppyId = navBackStack.arguments?.getInt("puppy.id")!!
+                            ProfileNavigation(navController, puppyId)
+                        }
+                    })
+            }
+
         }
     }
 }
