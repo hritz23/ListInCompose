@@ -15,17 +15,14 @@
         <activity
             android:name=".Login"
             android:exported="false"
-            android:label="@string/title_activity_login"
             android:theme="@style/Theme.ListInCompose" />
         <activity
             android:name=".ProfileDetail"
             android:exported="false"
-            android:label="@string/title_activity_profile_detail"
             android:theme="@style/Theme.ListInCompose" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.ListInCompose">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
