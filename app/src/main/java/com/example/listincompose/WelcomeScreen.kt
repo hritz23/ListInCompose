@@ -83,9 +83,9 @@ fun WelcomeScreen(navController: NavController, modifier: Modifier = Modifier) {
                     style = TextStyle(fontSize = 20.sp, fontWeight = FontWeight(500))
                 )
             }
-            Row(modifier = Modifier.padding(bottom = 24.dp)){
+            Row(modifier = Modifier.padding(top = 8.dp,bottom = 24.dp)){
                 Text(text = "Don't have an account? ", fontSize = 14.sp, color = Color.White)
-                Text(text = "Sign Up", fontSize = 14.sp, color = Color.White, fontWeight = FontWeight.Bold)
+                Text(text = "Sign Up", fontSize = 14.sp, color = Color.White, fontWeight = FontWeight.Black)
             }
 
         }
