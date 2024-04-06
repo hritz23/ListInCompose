@@ -60,10 +60,13 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 NavHost(
                     navController = navController,
-                    startDestination = "MainActivity",
+                    startDestination = "WelcomeScreen",
                     builder = {
                         composable("MainActivity") {
                             BarkHomeContent(navController)
+                        }
+                        composable("WelcomeScreen") {
+                            WelcomeScreen(navController)
                         }
                         composable(
                             "ProfileActivity/{puppy.id}",
