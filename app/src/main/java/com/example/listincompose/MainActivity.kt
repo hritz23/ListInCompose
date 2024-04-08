@@ -68,6 +68,9 @@ class MainActivity : ComponentActivity() {
                         composable("WelcomeScreen") {
                             WelcomeScreen(navController)
                         }
+                        composable("LoginScreen") {
+                            LoginScreen(navController)
+                        }
                         composable(
                             "ProfileActivity/{puppy.id}",
                             arguments = listOf(navArgument("puppy.id") { type = NavType.IntType })
